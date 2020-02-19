@@ -1,11 +1,11 @@
 import React from "react"
 
-const Item = ({ item }) => {
-    console.log(item);
+const Item = ({ todo }) => {
+    console.log(todo);
     return (
-        <>
-            <li>{ item }</li>
-        </>
+            <>
+                <li>{ todo }</li>
+            </>
     )
 }
 

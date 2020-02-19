@@ -1,20 +1,12 @@
 import React from "react"
 import Item from "./Item"
 
-const List = ({ items }) => {
-    console.log(items);
-    
+const List = ({ todos }) => {
+    console.log(todos);
+    const row = todos.map(x => <Item todo = { x.note } />)
     return (
         <ul>
-            <Item
-                item={items[0]}
-            />
-            <Item
-                item={items[1]}
-            />
-            <Item
-                item={items[2]}
-            />
+           {row}
         </ul>
     )
 }
