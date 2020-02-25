@@ -1,10 +1,17 @@
 import React from "react"
 
-const Form = ({ setTodos, todos }) => {
+const Form = ({ setTodos, todos, newNote, setNewNote }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        setTodos(todos.concat({ note: "やらなければならないこと" }))
+        setTodos(todos.concat({
+            note: newNote,
+            id: todos.length,
+            isDone: false
+        }))
+    }
+    const handleChange = (e) => {
+        setNewNote(e.target.value)
     }
     return (
         <form
@@ -13,6 +20,9 @@ const Form = ({ setTodos, todos }) => {
         >
             <input
                 type="text"
+                /*name="name"*/
+                value= { newNote }
+                onChange={ handleChange }
             />
             <button type="submit">追加</button>
         </form>
