@@ -4,43 +4,51 @@ import List from "./List"
 
 
 const App = () => {
+
+    const [isDone, setIsDone] = useState({
+        done: false,
+        text: "未完了"
+        }
+    )
+
     const [ todos, setTodos ] = useState([
         { 
             note: "十分な睡眠をとる" ,
             id: 0,
-            isDone: false
+            isDone: isDone
         },
         { 
             note: "健康的な食事をとる" ,
             id: 1,
-            isDone: false
+            isDone: isDone
         },
         { 
             note: "適度な運動をする" ,
             id: 2,
-            isDone: false
+            isDone: isDone
         },
         { 
             note: "犬の散歩" ,
             id: 3,
-            isDone: false
+            isDone: isDone
         },
         { 
             note: "身だしなみを整える" ,
             id: 4,
-            isDone: false
+            isDone: isDone
         },
         { 
             note: "お風呂に入る" ,
             id: 5,
-            isDone: false
+            isDone: isDone
         }
     ])
     // console.log(todos);
 
     const [newNote, setNewNote] = useState("")
     
-    // const [isDone, setIsDone] = useState("未完了")
+
+
 
     return (
         <>
@@ -49,12 +57,13 @@ const App = () => {
                 todos = { todos }
                 newNote = { newNote }
                 setNewNote = {setNewNote}
+                isDone = { isDone }
             />
             <List
                 todos={ todos }
                 setTodos = { setTodos }
-                // isDone = { isDone }
-                // setIsDone = { setIsDone }
+                isDone = { isDone }
+                setIsDone = { setIsDone }
             />
         </>
     )

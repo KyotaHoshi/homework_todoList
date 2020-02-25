@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React/*, { useState }*/ from "react"
 
-const Item = ({ todo, todos, setTodos, }) => {
+const Item = ({ todo, todos, setTodos }) => {
     // console.log(todo);
 
     const handleDelete = () => {
@@ -19,20 +19,28 @@ const Item = ({ todo, todos, setTodos, }) => {
         setTodos(newTodos)
     }
 
-    const [isDone, setIsDone] = useState("未完了")
+    //const [isDone, setIsDone] = useState("未完了")
 
     const handleIsDone = () => {
         const doneTodo = todos.find(x => x.id === todo.id)
-        if ( doneTodo.isDone === false){
-            doneTodo.isDone = true
-            setIsDone("完了")
+        if ( doneTodo.isDone.done === false){
+            doneTodo.isDone.done = true
         } else {
-            doneTodo.isDone = false
-            setIsDone("未完了")
+            doneTodo.isDone.done = false
         }
+        
+        const doneTodos = todos.map(x => {
+            if (x.isDone.done === true) {
+                return x.isDone.text = "完了"
+            } else {
+                return x.isDone.text = "未完了"
+            }
+        })
+
+        setTodos(doneTodos)
         console.log(todo.isDone);
         console.log(todos);
-
+        console.log(todo.isDone.text);
     }
 
     return (
@@ -51,7 +59,7 @@ const Item = ({ todo, todos, setTodos, }) => {
                         type = "text"
                         onClick = { handleIsDone }
                     >
-                        { isDone }
+                        { todo.isDone.text }
                     </button>
                 </li>
             </>
