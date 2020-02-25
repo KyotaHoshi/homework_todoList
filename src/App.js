@@ -40,8 +40,6 @@ const App = () => {
 
     const [newNote, setNewNote] = useState("")
     
-    // const [isDone, setIsDone] = useState("未完了")
-
     return (
         <>
             <Form 
@@ -53,8 +51,6 @@ const App = () => {
             <List
                 todos={ todos }
                 setTodos = { setTodos }
-                // isDone = { isDone }
-                // setIsDone = { setIsDone }
             />
         </>
     )

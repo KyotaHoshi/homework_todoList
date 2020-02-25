@@ -9,8 +9,6 @@ const List = ({ todos, setTodos }) => {
         key = { i } 
         todos = { todos }
         setTodos = { setTodos }
-        // isDone = { isDone }
-        // setIsDone = { setIsDone }
         />
     )
     return (

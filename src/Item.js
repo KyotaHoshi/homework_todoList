@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const Item = ({ todo, todos, setTodos, }) => {
+const Item = ({ todo, todos, setTodos }) => {
     // console.log(todo);
 
     const isDoneText = (x) => {
