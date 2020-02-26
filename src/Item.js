@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React/*, { useState }*/ from "react"
 
 const Item = ({ todo, todos, setTodos }) => {
     // console.log(todo);
@@ -6,34 +6,39 @@ const Item = ({ todo, todos, setTodos }) => {
     const isDoneText = (x) => {
         if (x.isDone === true) {
             return "完了"
-        } else {
+        } else if (x.isDone === false) {
             return "未完了"
+        } else {
+            return "不明"
         }
     }
     
-    const [isDone, setIsDone] = useState(isDoneText(todo))
+    // const [isDone, setIsDone] = useState(isDoneText(todo))
 
     const handleDelete = () => {
         const newTodos = todos.slice()
         newTodos.splice(todo.id, 1)
-        // console.log(todo.id);
         
         // id振り直し
         newTodos.map((x, i) => {
-            setIsDone(isDoneText(x))
+            // setIsDone(isDoneText(x))
             return (
                 x.id = i
-            )
+                )
         })
+
+        console.log(newTodos);
             
         setTodos(newTodos)
         console.log("-----Delete------");
-        console.log(todos);
         console.log(todo);
+        console.log(todos);
     }
 
     
     const handleIsDone = () => {
+        const newTodos = todos.slice()
+
         const doneTodo = todos.find(x => x.id === todo.id)
         if ( doneTodo.isDone === false){
             doneTodo.isDone = true
@@ -42,7 +47,11 @@ const Item = ({ todo, todos, setTodos }) => {
             doneTodo.isDone = false
             // setIsDone("未完了")
         }
-        setIsDone(isDoneText(todo))
+
+        newTodos.splice(doneTodo.id, 1, doneTodo)
+
+        setTodos(newTodos)
+        // setIsDone(isDoneText(todo))
         console.log("-----isDone------");
         console.log(todo);
         console.log(todos);
@@ -65,7 +74,7 @@ const Item = ({ todo, todos, setTodos }) => {
                         type = "text"
                         onClick = { handleIsDone }
                     >
-                        { isDone }
+                        { isDoneText(todo) }
                     </button>
                 </li>
             </>
