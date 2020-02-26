@@ -20,37 +20,57 @@ const App = () => {
             id: 2,
             isDone: false
         },
-        { 
-            note: "犬の散歩" ,
-            id: 3,
-            isDone: false
-        },
-        { 
-            note: "身だしなみを整える" ,
-            id: 4,
-            isDone: false
-        },
-        { 
-            note: "お風呂に入る" ,
-            id: 5,
-            isDone: false
-        }
     ])
-    // console.log(todos);
 
-    const [newNote, setNewNote] = useState("")
+    const addTodo = (value) => {
+        setTodos([
+            ...todos,
+            {
+                note: value,
+                id: todos.length,
+                isDone: false
+            }
+        ])
+    }
+
+    const deleteTodo = (id) => {
+        const newTodos = todos.slice()
+        newTodos.splice(id, 1)
+        
+        // id振り直し
+        newTodos.map((todo, i) => {
+            return (
+                todo.id = i
+                )
+        })
+
+        setTodos(newTodos)
+    }
+
+    const changeIsDone = (todo) => {
+        const newTodos = todos.slice()
+
+        const doneTodo = todos.find(x => x.id === todo.id)
+        if ( doneTodo.isDone === false){
+            doneTodo.isDone = true
+        } else {
+            doneTodo.isDone = false
+        }
+
+        newTodos.splice(doneTodo.id, 1, doneTodo)
+
+        setTodos(newTodos)
+    }
     
     return (
         <>
-            <Form 
-                setTodos = { setTodos }
-                todos = { todos }
-                newNote = { newNote }
-                setNewNote = {setNewNote}
+            <Form
+                addTodo = { addTodo }
             />
             <List
-                todos={ todos }
-                setTodos = { setTodos }
+                todos = { todos }
+                deleteTodo = { deleteTodo }
+                changeIsDone = { changeIsDone }
             />
         </>
     )

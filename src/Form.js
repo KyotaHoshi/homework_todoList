@@ -1,28 +1,25 @@
-import React from "react"
+import React, { useState } from "react"
 
-const Form = ({ setTodos, todos, newNote, setNewNote }) => {
+const Form = ({ addTodo }) => {
+    const [value, setValue] = useState("")
+    
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        setTodos(todos.concat({
-            note: newNote,
-            id: todos.length,
-            isDone: false
-        }))
+        addTodo(value)
     }
     const handleChange = (e) => {
-        setNewNote(e.target.value)
+        setValue(e.target.value)
     }
     return (
         <form
             action="#"
-            onSubmit={handleSubmit}
+            onSubmit= { handleSubmit }
         >
             <input
                 type="text"
-                /*name="name"*/
-                value= { newNote }
-                onChange={ handleChange }
+                value= { value }
+                onChange= { handleChange }
             />
             <button type="submit">追加</button>
         </form>

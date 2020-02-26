@@ -1,14 +1,13 @@
 import React from "react"
 import Item from "./Item"
 
-const List = ({ todos, setTodos }) => {
+const List = ({ todos, deleteTodo, changeIsDone }) => {
     // console.log(todos);
-    const row = todos.map((x, i) =>
+    const row = todos.map(todo =>
         <Item 
-        todo = { x }
-        key = { i } 
-        todos = { todos }
-        setTodos = { setTodos }
+        todo = { todo }
+        deleteTodo = { deleteTodo }
+        changeIsDone = { changeIsDone }
         />
     )
     return (
