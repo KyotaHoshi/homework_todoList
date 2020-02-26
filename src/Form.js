@@ -1,13 +1,13 @@
 import React from "react"
 
-const Form = ({ setTodos, todos, newNote, setNewNote, isDone }) => {
+const Form = ({ setTodos, todos, newNote, setNewNote }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
         setTodos(todos.concat({
             note: newNote,
             id: todos.length,
-            isDone: isDone
+            isDone: "未完了"
         }))
     }
     const handleChange = (e) => {

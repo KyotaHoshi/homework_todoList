@@ -1,7 +1,7 @@
 import React from "react"
 import Item from "./Item"
 
-const List = ({ todos, setTodos, }) => {
+const List = ({ todos, setTodos }) => {
     // console.log(todos);
     const row = todos.map((x, i) =>
         <Item 

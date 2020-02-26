@@ -1,13 +1,11 @@
 import React/*, { useState }*/ from "react"
 
 const Item = ({ todo, todos, setTodos }) => {
-    // console.log(todo);
 
     const handleDelete = () => {
         const newTodos = todos.slice()
         newTodos.splice(todo.id, 1)
         console.log(todo.id);
-        
 
         // id振り直し
         newTodos.map((x, i) => {
@@ -22,26 +20,19 @@ const Item = ({ todo, todos, setTodos }) => {
     //const [isDone, setIsDone] = useState("未完了")
 
     const handleIsDone = () => {
+        const newTodos = todos.slice()
         const doneTodo = todos.find(x => x.id === todo.id)
-        if ( doneTodo.isDone.done === false){
-            doneTodo.isDone.done = true
+        if ( doneTodo.isDone === "未完了"){
+            doneTodo.isDone = "完了"
         } else {
-            doneTodo.isDone.done = false
+            doneTodo.isDone = "未完了"
         }
-        
-        const doneTodos = todos.map(x => {
-            if (x.isDone.done === true) {
-                return x.isDone.text = "完了"
-            } else {
-                return x.isDone.text = "未完了"
-            }
-        })
 
-        setTodos(doneTodos)
-        console.log(todo.isDone);
-        console.log(todos);
-        console.log(todo.isDone.text);
+        newTodos.splice(todo.id, 1, doneTodo)
+        
+        setTodos(newTodos)
     }
+
 
     return (
             <>
@@ -59,7 +50,7 @@ const Item = ({ todo, todos, setTodos }) => {
                         type = "text"
                         onClick = { handleIsDone }
                     >
-                        { todo.isDone.text }
+                        { todo.isDone }
                     </button>
                 </li>
             </>
