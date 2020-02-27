@@ -1,14 +1,15 @@
 import React from "react"
+import styled from "styled-components"
 
 const Item = ({ todo, deleteTodo, changeIsDone }) => {
 
     const isDoneText = (todo) => {
         if (todo.isDone === true) {
-            return "完了"
+            return "済"
         } else if (todo.isDone === false) {
-            return "未完了"
+            return "未"
         } else {
-            return "不明"
+            return "？"
         }
     }
 
@@ -23,7 +24,7 @@ const Item = ({ todo, deleteTodo, changeIsDone }) => {
 
     return (
             <>
-                <li>
+                <Li>
                     <p>
                         { todo.note }
                     </p>
@@ -31,7 +32,7 @@ const Item = ({ todo, deleteTodo, changeIsDone }) => {
                         type = "text"
                         onClick = { handleDelete }
                     >
-                        削除
+                        －
                     </button>
                     <button
                         type = "text"
@@ -39,9 +40,13 @@ const Item = ({ todo, deleteTodo, changeIsDone }) => {
                     >
                         { isDoneText(todo) }
                     </button>
-                </li>
+                </Li>
             </>
     )
 }
+
+const Li = styled.li`
+    background-color: #fff;
+`
 
 export default Item

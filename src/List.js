@@ -1,5 +1,6 @@
 import React from "react"
 import Item from "./Item"
+import ListStyle from "./ListStyle"
 
 const List = ({ todos, deleteTodo, changeIsDone }) => {
     // console.log(todos);
@@ -11,9 +12,9 @@ const List = ({ todos, deleteTodo, changeIsDone }) => {
         />
     )
     return (
-        <ul>
-           {row}
-        </ul>
+        <ListStyle>
+           { row }
+        </ListStyle>
     )
 }
 

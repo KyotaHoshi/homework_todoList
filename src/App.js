@@ -1,8 +1,11 @@
 import React, { useState } from "react"
 import Form from "./Form"
 import List from "./List"
+import Header from "./Header"
+import Footer from "./Footer"
 
-import styled, { createGlobalStyle } from "styled-components"
+import Reset from "./ResetStyle"
+import GlobalStyle from "./GlobalStyle"
 
 
 const App = () => {
@@ -66,8 +69,9 @@ const App = () => {
     
     return (
         <>
+            <Reset />
             <GlobalStyle />
-            <Title>ToDo App</Title>
+            <Header />
             <Form
                 addTodo = { addTodo }
             />
@@ -76,22 +80,9 @@ const App = () => {
                 deleteTodo = { deleteTodo }
                 changeIsDone = { changeIsDone }
             />
+            <Footer />
         </>
     )
 }
-
-const GlobalStyle = createGlobalStyle`
-    body {
-        padding: 0;
-        margin: 0;
-    }
-`
-
-const Title = styled.h1`
-    font-size: 3em;
-    font-weight: bold;
-    text-align: center;
-    background-color: #435627;
-`
 
 export default App

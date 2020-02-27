@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { FormStyle, Input, SubmitButton, FormText } from "./FormStyle"
 
 const Form = ({ addTodo }) => {
     const [value, setValue] = useState("")
@@ -12,17 +13,18 @@ const Form = ({ addTodo }) => {
         setValue(e.target.value)
     }
     return (
-        <form
+        <FormStyle
             action="#"
             onSubmit= { handleSubmit }
         >
-            <input
+            <Input
                 type="text"
                 value= { value }
                 onChange= { handleChange }
             />
-            <button type="submit">追加</button>
-        </form>
+            <SubmitButton type="submit">＋</SubmitButton>
+            <FormText>todoを入力しよう！</FormText>
+        </FormStyle>
     )
 }
 
