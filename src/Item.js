@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "styled-components"
+import { Li, TodoNote, DeleteButton } from "./ItemStyle"
 
 const Item = ({ todo, deleteTodo, changeIsDone }) => {
 
@@ -25,15 +25,15 @@ const Item = ({ todo, deleteTodo, changeIsDone }) => {
     return (
             <>
                 <Li>
-                    <p>
+                    <TodoNote>
                         { todo.note }
-                    </p>
-                    <button
+                    </TodoNote>
+                    <DeleteButton
                         type = "text"
                         onClick = { handleDelete }
                     >
                         －
-                    </button>
+                    </DeleteButton>
                     <button
                         type = "text"
                         onClick = { handleIsDone }
@@ -44,9 +44,5 @@ const Item = ({ todo, deleteTodo, changeIsDone }) => {
             </>
     )
 }
-
-const Li = styled.li`
-    background-color: #fff;
-`
 
 export default Item

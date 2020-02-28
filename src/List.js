@@ -5,7 +5,7 @@ import ListStyle from "./ListStyle"
 const List = ({ todos, deleteTodo, changeIsDone }) => {
     // console.log(todos);
     const row = todos.map(todo =>
-        <Item 
+        <Item
         todo = { todo }
         deleteTodo = { deleteTodo }
         changeIsDone = { changeIsDone }
