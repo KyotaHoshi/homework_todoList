@@ -1,26 +1,20 @@
 import React from "react"
 import { Li, TodoNote, DeleteButton } from "./ItemStyle"
 
-const Item = ({ todo, deleteTodo, changeIsDone }) => {
+const Item = ({
+    todo,
+    deleteTodo,
+    changeIsDone,
+    id
+}) => {
 
-    const isDoneText = (todo) => {
-        if (todo.isDone === true) {
+    const isDoneText = () => {
+        if (todo.isDone) {
             return "済"
-        } else if (todo.isDone === false) {
-            return "未"
         } else {
-            return "？"
+            return "未"
         }
     }
-
-    const handleDelete = () => {
-        deleteTodo(todo.id)
-    }
-    
-    const handleIsDone = () => {
-        changeIsDone(todo)
-    }
-
 
     return (
             <>
@@ -30,15 +24,19 @@ const Item = ({ todo, deleteTodo, changeIsDone }) => {
                     </TodoNote>
                     <DeleteButton
                         type = "text"
-                        onClick = { handleDelete }
+                        onClick = { () => {
+                            deleteTodo(id)
+                        } }
                     >
                         －
                     </DeleteButton>
                     <button
                         type = "text"
-                        onClick = { handleIsDone }
+                        onClick = { () => {
+                            changeIsDone(id)
+                        } }
                     >
-                        { isDoneText(todo) }
+                        { isDoneText() }
                     </button>
                 </Li>
             </>

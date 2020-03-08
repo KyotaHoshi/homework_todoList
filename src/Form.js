@@ -6,8 +6,12 @@ const Form = ({ addTodo }) => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        if (!value) { 
+            alert("入力してください")
+            return
+        }
         addTodo(value)
+        setValue("")
     }
     const handleChange = (e) => {
         setValue(e.target.value)

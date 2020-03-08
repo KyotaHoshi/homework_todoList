@@ -4,6 +4,8 @@ import List from "./List"
 import Header from "./Header"
 import Footer from "./Footer"
 
+import { db } from "./config/firebase"
+
 import Reset from "./ResetStyle"
 import GlobalStyle from "./GlobalStyle"
 
@@ -12,17 +14,6 @@ const App = () => {
     const [ todos, setTodos ] = useState([
         { 
             note: "十分な睡眠をとる" ,
-            id: 0,
-            isDone: false
-        },
-        { 
-            note: "健康的な食事をとる" ,
-            id: 1,
-            isDone: false
-        },
-        { 
-            note: "適度な運動をする" ,
-            id: 2,
             isDone: false
         },
     ])
@@ -32,38 +23,18 @@ const App = () => {
             ...todos,
             {
                 note: value,
-                id: todos.length,
                 isDone: false
             }
         ])
     }
 
     const deleteTodo = (id) => {
-        const newTodos = todos.slice()
-        newTodos.splice(id, 1)
-        
-        // id振り直し
-        newTodos.map((todo, i) => {
-            return (
-                todo.id = i
-                )
-        })
-
-        setTodos(newTodos)
+        setTodos(todos.filter((todo, index) => index !== id))
     }
 
-    const changeIsDone = (todo) => {
+    const changeIsDone = (id) => {
         const newTodos = todos.slice()
-
-        const doneTodo = todos.find(x => x.id === todo.id)
-        if ( doneTodo.isDone === false){
-            doneTodo.isDone = true
-        } else {
-            doneTodo.isDone = false
-        }
-
-        newTodos.splice(doneTodo.id, 1, doneTodo)
-
+        newTodos[id].isDone = !newTodos[id].isDone
         setTodos(newTodos)
     }
     
