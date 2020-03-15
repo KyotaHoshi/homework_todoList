@@ -4,8 +4,7 @@ import { Li, TodoNote, DeleteButton } from "./ItemStyle"
 const Item = ({
     todo,
     deleteTodo,
-    changeIsDone,
-    id
+    changeIsDone
 }) => {
 
     const isDoneText = () => {
@@ -25,7 +24,7 @@ const Item = ({
                     <DeleteButton
                         type = "text"
                         onClick = { () => {
-                            deleteTodo(id)
+                            deleteTodo(todo.id)
                         } }
                     >
                         －
@@ -33,7 +32,7 @@ const Item = ({
                     <button
                         type = "text"
                         onClick = { () => {
-                            changeIsDone(id)
+                            changeIsDone(todo.id)
                         } }
                     >
                         { isDoneText() }

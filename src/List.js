@@ -8,11 +8,9 @@ const List = ({
     changeIsDone 
 }) => {
     // console.log(todos);
-    const row = todos.map((todo, index) =>
+    const row = todos.map(todo =>
         <Item
         todo = { todo }
-        // key = { index }
-        id = { index }
         deleteTodo = { deleteTodo }
         changeIsDone = { changeIsDone }
         />

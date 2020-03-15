@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Form from "./Form"
 import List from "./List"
 import Header from "./Header"
@@ -11,31 +11,60 @@ import GlobalStyle from "./GlobalStyle"
 
 
 const App = () => {
-    const [ todos, setTodos ] = useState([
-        { 
-            note: "十分な睡眠をとる" ,
-            isDone: false
-        },
-    ])
+    const [ todos, setTodos ] = useState([])
+    const [ doDelete, setDoDelete ] = useState(0)
+
+    useEffect(() => {
+        db.collection('todos')
+            .get()
+            .then(querySnapshot => {
+                // querySnapshot.forEach(doc => {
+                //     console.log(`${doc.id} => ${doc.data()}`);                
+                // })
+                const newTodos = querySnapshot.docs.map(doc => {
+                    const todo = doc.data()
+                    todo.id = doc.id
+                    return todo
+                })
+                console.log(newTodos)
+                setTodos(newTodos)
+            })
+    }, [doDelete])
 
     const addTodo = (value) => {
-        setTodos([
-            ...todos,
-            {
-                note: value,
-                isDone: false
-            }
-        ])
+        const newTodo = {
+            note: value,
+            isDone: false,
+        }
+
+        db.collection('todos')
+            .add(newTodo)
+            .then(docRef => {
+                console.log("保存完了", docRef)
+                newTodo.id = docRef.id
+                setTodos([
+                    ...todos,
+                    newTodo
+                ])
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     const deleteTodo = (id) => {
-        setTodos(todos.filter((todo, index) => index !== id))
+        db.collection("todos").doc(id)
+            .delete()
+            .then(() => {
+                console.log("削除成功")
+                setDoDelete(doDelete + 1)
+            })
+            .catch(err => {
+                console.log(err);                
+            })
     }
 
     const changeIsDone = (id) => {
-        const newTodos = todos.slice()
-        newTodos[id].isDone = !newTodos[id].isDone
-        setTodos(newTodos)
     }
     
     return (
