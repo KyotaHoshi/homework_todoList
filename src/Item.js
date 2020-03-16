@@ -32,7 +32,7 @@ const Item = ({
                     <button
                         type = "text"
                         onClick = { () => {
-                            changeIsDone(todo.id)
+                            changeIsDone(todo)
                         } }
                     >
                         { isDoneText() }

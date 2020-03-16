@@ -12,7 +12,7 @@ import GlobalStyle from "./GlobalStyle"
 
 const App = () => {
     const [ todos, setTodos ] = useState([])
-    const [ doDelete, setDoDelete ] = useState(0)
+    const [ reRender, doReRender ] = useState(0)
 
     useEffect(() => {
         db.collection('todos')
@@ -29,7 +29,7 @@ const App = () => {
                 console.log(newTodos)
                 setTodos(newTodos)
             })
-    }, [doDelete])
+    }, [reRender])
 
     const addTodo = (value) => {
         const newTodo = {
@@ -57,14 +57,25 @@ const App = () => {
             .delete()
             .then(() => {
                 console.log("削除成功")
-                setDoDelete(doDelete + 1)
+                doReRender(reRender + 1)
             })
             .catch(err => {
                 console.log(err);                
             })
     }
 
-    const changeIsDone = (id) => {
+    const changeIsDone = (todo) => {
+        todo.isDone = !todo.isDone
+        db.collection("todos").doc(todo.id)
+            .update(todo)
+            .then(() => {
+                console.log("isDone変更")
+                doReRender(reRender + 1)
+            })
+            .catch(err => {
+                    console.log(err);
+                }
+            )
     }
     
     return (
